@@ -7,7 +7,7 @@ class TestRotor(unittest.TestCase):
         self.rotor = Rotor()
 
     def test_rotor_is_created(self):
-            self.assertEqual(1, 2)
+            self.assertIsNotNone(self.rotor)
 
 
 if __name__ == '__main__':
