@@ -1,6 +1,6 @@
 import unittest
 
-from Engima import Rotor
+from src.rotor import Rotor
 
 class TestRotor(unittest.TestCase):
     def setUp(self):
