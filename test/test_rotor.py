@@ -1,7 +1,7 @@
 import unittest
 
 from src.rotor import Rotor
-from src.exceptions.invalid_rotor_input_exception import InvalidRotorInputException
+from src.exceptions.exceptions import InvalidRotorInputException
 
 class TestRotor(unittest.TestCase):
     def setUp(self):

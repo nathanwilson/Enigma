@@ -1,4 +1,4 @@
-from exceptions.invalid_rotor_input_exception import InvalidRotorInputException
+from exceptions.exceptions import InvalidRotorInputException
 
 class Rotor:
 
