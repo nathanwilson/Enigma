@@ -1,0 +1,2 @@
+class InvalidRotorInputException(Exception):
+    pass
