@@ -17,6 +17,12 @@ class RotorHouse:
             raise(NoRotorsInHouseException)
         else:
         	current_character = input_character
+        	previous_rotor = None
         	for rotor in self.__rotor:
         		current_character = rotor.get_substitution_character_for_given_input(current_character)
+        		if previous_rotor is None:
+        			rotor.rotate()
+        		elif previous_rotor.get_current_rotation_value() is 0:
+        			rotor.rotate()
+        		previous_rotor = rotor
         	return current_character
