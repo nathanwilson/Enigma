@@ -28,3 +28,11 @@ class RotorHouse:
     			rotor.rotate()
     		previous_rotor = rotor
     	return current_character
+
+    def process_string(self, input_string):
+    	self.check_house_has_rotors()
+    	output_string = ''
+
+    	for char in input_string:
+    		output_string = output_string + self.process_letter(char)
+    	return output_string
