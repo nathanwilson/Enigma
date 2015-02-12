@@ -22,9 +22,9 @@ class TestRotor(unittest.TestCase):
         start_rotation_status = self.rotor.get_current_rotation_status()
         self.rotor.rotate()
         second_rotation_status = self.rotor.get_current_rotation_status()
-        expected_second_rotation_status = "KMFLGDQVZNTOWYHXUSPAIBRCJE"
+        expected_second_rotation_status = list('KMFLGDQVZNTOWYHXUSPAIBRCJE')
         self.assertEqual(second_rotation_status, expected_second_rotation_status,
-                            "Expected the output to be '" + expected_second_rotation_status + "' but got '" + second_rotation_status + "'" )
+                            "Actual output did not match expected output. Actual was: ".join(second_rotation_status))
 
     def test_exception_is_thrown_when_invalid_substitution_input_is_used(self):
         input_character = 'a'

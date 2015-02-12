@@ -16,3 +16,12 @@ class Rotor:
                 or index_of_character > self.__MAX_INDEX_OF_CIPHER):
             raise(InvalidRotorInputException)
         return self.__substitution_cipher[index_of_character]
+
+    def rotate(self):
+        temp = self.__substitution_cipher[0]
+        for x in range(0, len(self.__substitution_cipher) - 1):
+            self.__substitution_cipher[x] = self.__substitution_cipher[x + 1]
+        self.__substitution_cipher[25] = temp
+
+    def get_current_rotation_status(self):
+            return self.__substitution_cipher
