@@ -42,6 +42,17 @@ class TestRotorHouse(unittest.TestCase):
                 expected_output_character_two,
                 "Expected the second output to be 'F' when given inputs 'AM'")
 
+    def test_house_with_two_rotors_maps_given_input_string_to_expected_output(self):
+        input_string = 'HELLO'
+        expected_output_string = 'QRFOZ'
+        self.rotor_house.add_rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ')
+        self.rotor_house.add_rotor('AJDKSIRUXBLHWTMCQGZNPYFVOE')
+        actual_output_string = self.rotor_house.process_string(input_string)
+        self.assertEqual(actual_output_string,
+                expected_output_string,
+                "Expected the output to be 'QRFOZ' when given input 'HELLO'")
+
+
 
     def test_house_with_no_rotors(self):
         input_character = 'A'
