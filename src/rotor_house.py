@@ -14,4 +14,3 @@ class RotorHouse:
             raise(NoRotorsInHouseException)
         else:
             return self.__rotor.get_substitution_character_for_given_input(input_character)
-        

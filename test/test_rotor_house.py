@@ -18,6 +18,14 @@ class TestRotorHouse(unittest.TestCase):
                 expected_output_character,
                 "Expected the output to be 'E' when given input 'A'")
 
+    def test_house_with_two_rotors_maps_given_input_to_expected_output(self):
+        input_character = 'A'
+        expected_output_character = 'S'
+        self.rotor_house.add_rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ')
+        self.rotor_house.add_rotor('AJDKSIRUXBLHWTMCQGZNPYFVOE')
+        self.assertEqual(self.rotor_house.process_letter(input_character),
+                expected_output_character,
+                "Expected the output to be 'S' when given input 'A'")
 
     def test_house_with_no_rotors(self):
         input_character = 'A'
