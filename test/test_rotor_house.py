@@ -27,7 +27,7 @@ class TestRotorHouse(unittest.TestCase):
                 "Expected the output to be 'S' when given input 'A'")
 
     def test_house_with_two_rotors_maps_given_inputs_to_expect_outputs(self):
-        input_characters_one = 'A'
+        input_character_one = 'A'
         input_character_two = 'M'
         expected_output_character_one = 'S'
         expected_output_character_two = 'F'
