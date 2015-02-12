@@ -7,9 +7,6 @@ class TestRotor(unittest.TestCase):
     def setUp(self):
         self.rotor = Rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ')
 
-    def test_rotor_is_created(self):
-        self.assertIsNotNone(self.rotor)
-
     def test_single_input_is_mapped_to_correct_output(self):
        input_character = 'A'
        expected_output_character = 'E'
