@@ -24,7 +24,7 @@ class RotorHouse:
     		current_character = rotor.get_substitution_character_for_given_input(current_character)
     		if previous_rotor is None:
     			rotor.rotate()
-    		elif previous_rotor.get_current_rotation_value() is 0:
+    		elif previous_rotor.get_number_of_rotations() > rotor.get_number_of_rotations():
     			rotor.rotate()
     		previous_rotor = rotor
     	return current_character
