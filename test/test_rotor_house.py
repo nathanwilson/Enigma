@@ -54,7 +54,7 @@ class TestRotorHouse(unittest.TestCase):
 
     def test_house_with_three_rotors_maps_input_string_to_expected_output(self):
         input_string = 'HELLO'
-        expected_output_string = 'IWJQZ'
+        expected_output_string = 'IWLYO'
         self.rotor_house.add_rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ')
         self.rotor_house.add_rotor('AJDKSIRUXBLHWTMCQGZNPYFVOE')
         self.rotor_house.add_rotor('BDFHJLCPRTXVZNYEIWGAKMUSQO')
