@@ -62,7 +62,7 @@ class TestRotorHouse(unittest.TestCase):
         print actual_output_string
         self.assertEqual(actual_output_string,
                 expected_output_string,
-                "Expected the output to be 'IRJQZ' when given input 'HELLO'")
+                "Expected the output to be 'IWLYO' when given input 'HELLO'")
 
     def test_house_with_no_rotors(self):
         input_character = 'A'
