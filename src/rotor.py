@@ -3,6 +3,7 @@ from exceptions.exceptions import InvalidRotorInputException
 class Rotor:
 
     __substitution_cipher = []
+    __full_rotations = 0
     __rotation_value = 0
     __CONVERT_FROM_ASCII = 65
     __MIN_INDEX_OF_CIPHER = 0
@@ -24,6 +25,11 @@ class Rotor:
             self.__substitution_cipher[x] = self.__substitution_cipher[x + 1]
         self.__substitution_cipher[25] = temp
         self.__rotation_value = (self.__rotation_value + 1) % 26
+        if(self.rotation_value is 0):
+            self.__full_rotoations = self.__full_rotations + 1
+
+    def get_number_of_rotations(self):
+        return __full_rotations
 
     def get_current_rotation_value(self):
         return self.__rotation_value
