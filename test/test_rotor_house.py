@@ -59,7 +59,6 @@ class TestRotorHouse(unittest.TestCase):
         self.rotor_house.add_rotor('AJDKSIRUXBLHWTMCQGZNPYFVOE')
         self.rotor_house.add_rotor('BDFHJLCPRTXVZNYEIWGAKMUSQO')
         actual_output_string = self.rotor_house.process_string(input_string)
-        print actual_output_string
         self.assertEqual(actual_output_string,
                 expected_output_string,
                 "Expected the output to be 'IWLYO' when given input 'HELLO'")
