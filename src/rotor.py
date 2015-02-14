@@ -25,14 +25,14 @@ class Rotor:
             self.__substitution_cipher[x] = self.__substitution_cipher[x + 1]
         self.__substitution_cipher[25] = temp
         self.__rotation_value = (self.__rotation_value + 1) % 26
-        if(self.rotation_value is 0):
+        if(self.__rotation_value is 0):
             self.__full_rotoations = self.__full_rotations + 1
 
     def get_number_of_rotations(self):
-        return __full_rotations
+        return self.__full_rotations
 
     def get_current_rotation_value(self):
         return self.__rotation_value
 
     def get_current_rotation_status(self):
-            return self.__substitution_cipher
+        return self.__substitution_cipher
