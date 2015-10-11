@@ -11,9 +11,11 @@ class Rotor:
 
     def __init__(self, substitution_order):
         self.__substitution_cipher = list(substitution_order)
+        self.__full_rotations = 0
+        self.__rotation_value = 0
 
     def get_substitution_character_for_given_input(self, input_character):
-        index_of_character = ord(input_character) - self.__CONVERT_FROM_ASCII 
+        index_of_character = ord(input_character) - self.__CONVERT_FROM_ASCII
         if(index_of_character < self.__MIN_INDEX_OF_CIPHER
                 or index_of_character > self.__MAX_INDEX_OF_CIPHER):
             raise(InvalidRotorInputException)
@@ -26,7 +28,7 @@ class Rotor:
         self.__substitution_cipher[25] = temp
         self.__rotation_value = (self.__rotation_value + 1) % 26
         if(self.__rotation_value is 0):
-            self.__full_rotoations = self.__full_rotations + 1
+            self.__full_rotations = self.__full_rotations + 1
 
     def get_number_of_rotations(self):
         return self.__full_rotations

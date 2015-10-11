@@ -12,7 +12,7 @@ class TestRotor(unittest.TestCase):
        expected_output_character = 'E'
        self.assertEqual(self.rotor
                         .get_substitution_character_for_given_input(
-                            input_character), expected_output_character, 
+                            input_character), expected_output_character,
                         "Expected the output to be 'E' when given input 'A'")
 
     def test_rotor_rotates(self):
@@ -27,6 +27,12 @@ class TestRotor(unittest.TestCase):
         input_character = 'a'
         with self.assertRaises(InvalidRotorInputException):
             self.rotor.get_substitution_character_for_given_input(input_character)
+
+    def test_full_rotation(self):
+
+        for x in range(0, 26):
+            self.rotor.rotate()
+        self.assertEqual(self.rotor.get_number_of_rotations(), 1, "Should have completed a full rotation")
 
 if __name__ == '__main__':
     unittest.main()

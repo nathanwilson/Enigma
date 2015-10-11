@@ -6,8 +6,8 @@ from src.exceptions.exceptions import NoRotorsInHouseException
 class TestRotorHouse(unittest.TestCase):
     def setUp(self):
         self.rotor_house = RotorHouse()
-    
-    def test_house_with_one_rotor_maps_given_input_to_expected_output(self):
+
+    def test_house_with_one_rotor_character(self):
         input_character = 'A'
         expected_output_character = 'E'
         self.rotor_house.add_rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ')
@@ -16,7 +16,7 @@ class TestRotorHouse(unittest.TestCase):
                 expected_output_character,
                 "Expected the output to be 'E' when given input 'A'")
 
-    def test_house_with_two_rotors_maps_given_input_to_expected_output(self):
+    def test_house_with_two_rotors_character(self):
         input_character = 'A'
         expected_output_character = 'S'
         self.rotor_house.add_rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ')
@@ -26,7 +26,7 @@ class TestRotorHouse(unittest.TestCase):
                 expected_output_character,
                 "Expected the output to be 'S' when given input 'A'")
 
-    def test_house_with_two_rotors_maps_given_inputs_to_expect_outputs(self):
+    def test_house_with_two_rotors_two_character(self):
         input_character_one = 'A'
         input_character_two = 'M'
         expected_output_character_one = 'S'
@@ -42,7 +42,7 @@ class TestRotorHouse(unittest.TestCase):
                 expected_output_character_two,
                 "Expected the second output to be 'F' when given inputs 'AM'")
 
-    def test_house_with_two_rotors_maps_given_input_string_to_expected_output(self):
+    def test_house_with_two_rotors_word(self):
         input_string = 'HELLO'
         expected_output_string = 'QRFOZ'
         self.rotor_house.add_rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ')
@@ -52,7 +52,18 @@ class TestRotorHouse(unittest.TestCase):
                 expected_output_string,
                 "Expected the output to be 'QRFOZ' when given input 'HELLO'")
 
-    def test_house_with_three_rotors_maps_input_string_to_expected_output(self):
+    def test_house_with_two_rotors_rotates_second_rotor(self):
+        input_string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZA'
+        expected_output_string = 'SWHKYTMOVZAJDSWHKYTMOVZAJDI'
+        self.rotor_house.add_rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ')
+        self.rotor_house.add_rotor('AJDKSIRUXBLHWTMCQGZNPYFVOE')
+        actual_output_string = self.rotor_house.process_string(input_string)
+        self.assertEqual(actual_output_string,
+                expected_output_string,
+                "Expected the output to be 'SWHKYTMOVZAJDSWHKYTMOVZAJDI' when given input 'ABCDEFGHIJKLMNOPQRSTUVWXYZA' but was '"
+                + actual_output_string + "'")
+
+    def test_house_with_three_rotors_word(self):
         input_string = 'HELLO'
         expected_output_string = 'IWLYO'
         self.rotor_house.add_rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ')
