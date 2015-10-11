@@ -39,3 +39,6 @@ class RotorHouse:
         for char in input_string:
             output_string = output_string + self.process_letter(char)
         return output_string
+
+    def get_rotors(self):
+        return self.__rotor
