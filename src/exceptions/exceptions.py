@@ -3,3 +3,6 @@ class InvalidRotorInputException(Exception):
 
 class NoRotorsInHouseException(Exception):
     pass
+
+class NoReflectorInHouseException(Exception):
+    pass
