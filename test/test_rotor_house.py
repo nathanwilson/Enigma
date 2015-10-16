@@ -2,82 +2,88 @@ import unittest
 
 from src.rotor_house import RotorHouse
 from src.exceptions.exceptions import NoRotorsInHouseException
+from src.exceptions.exceptions import NoReflectorInHouseException
 
 class TestRotorHouse(unittest.TestCase):
     def setUp(self):
         self.rotor_house = RotorHouse()
 
-    def test_house_with_one_rotor_character(self):
+    def test_house_with_no_rotors(self):
         input_character = 'A'
-        expected_output_character = 'E'
-        self.rotor_house.add_rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ')
-        actual_output_character = self.rotor_house.process_letter(input_character)
-        self.assertEqual(actual_output_character,
-                expected_output_character,
-                "Expected the output to be 'E' when given input 'A'")
+        with self.assertRaises(NoRotorsInHouseException):
+            self.rotor_house.process_letter(input_character)
 
-    def test_house_with_two_rotors_character(self):
+    def test_house_with_no_reflector(self):
         input_character = 'A'
-        expected_output_character = 'S'
         self.rotor_house.add_rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ')
-        self.rotor_house.add_rotor('AJDKSIRUXBLHWTMCQGZNPYFVOE')
-        actual_output_character = self.rotor_house.process_letter(input_character)
-        self.assertEqual(actual_output_character,
-                expected_output_character,
-                "Expected the output to be 'S' when given input 'A'")
+        with self.assertRaises(NoReflectorInHouseException):
+            self.rotor_house.process_letter(input_character)
 
-    def test_house_with_two_rotors_two_character(self):
-        input_character_one = 'A'
-        input_character_two = 'M'
-        expected_output_character_one = 'S'
-        expected_output_character_two = 'F'
+    def test_get_char_forward_rotor_journey_single_rotor(self):
         self.rotor_house.add_rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ')
-        self.rotor_house.add_rotor('AJDKSIRUXBLHWTMCQGZNPYFVOE')
-        actual_output_character_one = self.rotor_house.process_letter(input_character_one)
-        actual_output_character_two = self.rotor_house.process_letter(input_character_two)
-        self.assertEqual(actual_output_character_one,
-                expected_output_character_one,
-                "Expected the first output to be 'S' when given inputs 'AM'")
-        self.assertEqual(actual_output_character_two,
-                expected_output_character_two,
-                "Expected the second output to be 'F' when given inputs 'AM'")
+        input_char = 'D'
+        expected_output = 'F'
+        actual_output = self.rotor_house.get_char_forward_rotor_journey(input_char)
+        self.assertEqual(actual_output, expected_output)
 
-    def test_house_with_two_rotors_word(self):
-        input_string = 'HELLO'
-        expected_output_string = 'QRFOZ'
-        self.rotor_house.add_rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ')
-        self.rotor_house.add_rotor('AJDKSIRUXBLHWTMCQGZNPYFVOE')
-        actual_output_string = self.rotor_house.process_string(input_string)
-        self.assertEqual(actual_output_string,
-                expected_output_string,
-                "Expected the output to be 'QRFOZ' when given input 'HELLO'")
-
-    def test_house_with_two_rotors_rotates_second_rotor(self):
-        input_string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZA'
-        expected_output_string = 'SWHKYTMOVZAJDSWHKYTMOVZAJDI'
-        self.rotor_house.add_rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ')
-        self.rotor_house.add_rotor('AJDKSIRUXBLHWTMCQGZNPYFVOE')
-        actual_output_string = self.rotor_house.process_string(input_string)
-        self.assertEqual(actual_output_string,
-                expected_output_string,
-                "Expected the output to be 'SWHKYTMOVZAJDSWHKYTMOVZAJDI' when given input 'ABCDEFGHIJKLMNOPQRSTUVWXYZA' but was '"
-                + actual_output_string + "'")
-
-    def test_house_with_three_rotors_word(self):
-        input_string = 'HELLO'
-        expected_output_string = 'IWLYO'
+    def test_get_char_forward_rotor_journey_multiple_rotors(self):
         self.rotor_house.add_rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ')
         self.rotor_house.add_rotor('AJDKSIRUXBLHWTMCQGZNPYFVOE')
         self.rotor_house.add_rotor('BDFHJLCPRTXVZNYEIWGAKMUSQO')
-        actual_output_string = self.rotor_house.process_string(input_string)
-        self.assertEqual(actual_output_string,
-                expected_output_string,
-                "Expected the output to be 'IWLYO' when given input 'HELLO'")
+        input_char = 'D'
+        expected_output = 'R'
+        actual_output = self.rotor_house.get_char_forward_rotor_journey(input_char)
+        self.assertEqual(actual_output, expected_output)
+
+    def test_get_char_return_rotor_journey_single_rotor(self):
+        self.rotor_house.add_rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ')
+        input_char = 'F'
+        expected_output = 'D'
+        actual_output = self.rotor_house.get_char_return_rotor_journey(input_char)
+        self.assertEqual(actual_output, expected_output)
+
+    def test_get_char_return_rotor_journey_multiple_rotors(self):
+        self.rotor_house.add_rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ')
+        self.rotor_house.add_rotor('AJDKSIRUXBLHWTMCQGZNPYFVOE')
+        self.rotor_house.add_rotor('BDFHJLCPRTXVZNYEIWGAKMUSQO')
+        input_char = 'R'
+        expected_output = 'D'
+        actual_output = self.rotor_house.get_char_return_rotor_journey(input_char)
+        self.assertEqual(actual_output, expected_output)
+
+    def test_get_char_reflect(self):
+        self.rotor_house.add_reflector('EJMZALYXVBWFCRQUONTSPIKHGD')
+        input_char = 'Z'
+        expected_output = 'D'
+        actual_output = self.rotor_house.get_char_reflect(input_char)
+        self.assertEqual(actual_output, expected_output)
+
+    def test_process_letter_with_single_rotor_character(self):
+        self.rotor_house.add_rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ')
+        self.rotor_house.add_reflector('EJMZALYXVBWFCRQUONTSPIKHGD')
+
+        input_char = 'E'
+        expected_output = 'D'
+        actual_output = self.rotor_house.process_letter(input_char)
+        self.assertEqual(actual_output, expected_output)
+
+    def test_process_letter_with_multiple_rotors_character(self):
+        self.rotor_house.add_rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ')
+        self.rotor_house.add_rotor('AJDKSIRUXBLHWTMCQGZNPYFVOE')
+        self.rotor_house.add_rotor('BDFHJLCPRTXVZNYEIWGAKMUSQO')
+        self.rotor_house.add_reflector('EJMZALYXVBWFCRQUONTSPIKHGD')
+
+        input_char = 'E'
+        expected_output = 'C'
+        actual_output = self.rotor_house.process_letter(input_char)
+        self.assertEqual(actual_output, expected_output)
 
     def test_house_with_three_rotors_complete_rotation(self):
         self.rotor_house.add_rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ')
         self.rotor_house.add_rotor('AJDKSIRUXBLHWTMCQGZNPYFVOE')
         self.rotor_house.add_rotor('BDFHJLCPRTXVZNYEIWGAKMUSQO')
+
+        self.rotor_house.add_reflector('EJMZALYXVBWFCRQUONTSPIKHGD')
 
         for x in range(0, 26*26*26):
             self.rotor_house.process_string('H')
@@ -87,7 +93,23 @@ class TestRotorHouse(unittest.TestCase):
         self.assertEqual(self.rotor_house.get_rotors()[2].get_number_of_rotations(), 1, "Rotor 2 failure")
 
 
-    def test_house_with_no_rotors(self):
-        input_character = 'A'
-        with self.assertRaises(NoRotorsInHouseException):
-            self.rotor_house.process_letter(input_character)
+    def test_encrypt_decrypt_string(self):
+        self.rotor_house.add_rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ')
+        self.rotor_house.add_rotor('AJDKSIRUXBLHWTMCQGZNPYFVOE')
+        self.rotor_house.add_rotor('BDFHJLCPRTXVZNYEIWGAKMUSQO')
+
+        self.rotor_house.add_reflector('EJMZALYXVBWFCRQUONTSPIKHGD')
+
+        plaintext = "HELLOTHISISNATHAN"
+        ciphertext = self.rotor_house.process_string(plaintext)
+
+        another_rotor_house = RotorHouse()
+        another_rotor_house.add_rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ')
+        another_rotor_house.add_rotor('AJDKSIRUXBLHWTMCQGZNPYFVOE')
+        another_rotor_house.add_rotor('BDFHJLCPRTXVZNYEIWGAKMUSQO')
+
+        another_rotor_house.add_reflector('EJMZALYXVBWFCRQUONTSPIKHGD')
+
+        expected_plaintext = another_rotor_house.process_string(ciphertext)
+
+        self.assertEqual(expected_plaintext, plaintext)
