@@ -16,7 +16,7 @@ class RotorHouse:
         self.__rotor.append(Rotor(rotor_substitution_order))
 
     def add_reflector(self, substitution_order):
-        self.__reflector = Reflector(substitution_order)
+        self.__reflector = Rotor(substitution_order)
 
     def check_house_has_rotors(self):
         if not self.__rotor:
@@ -25,7 +25,6 @@ class RotorHouse:
     def check_house_has_reflector(self):
         if self.__reflector is None:
             raise(NoReflectorInHouseException)
-
 
     def get_char_forward_rotor_journey(self, input_character):
         current_character = input_character
