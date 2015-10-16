@@ -21,6 +21,13 @@ class Rotor:
             raise(InvalidRotorInputException)
         return self.__substitution_cipher[index_of_character]
 
+    def get_reverse_substitution_character_for_given_input(self, input_character):
+        temp = 'A'
+        for char in self.__substitution_cipher:
+            if char == input_character:
+                return temp
+            temp = chr(ord(temp) + 1)
+
     def rotate(self):
         temp = self.__substitution_cipher[0]
         for x in range(0, len(self.__substitution_cipher) - 1):

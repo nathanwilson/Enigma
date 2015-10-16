@@ -29,10 +29,32 @@ class TestRotor(unittest.TestCase):
             self.rotor.get_substitution_character_for_given_input(input_character)
 
     def test_full_rotation(self):
-
         for x in range(0, 26):
             self.rotor.rotate()
         self.assertEqual(self.rotor.get_number_of_rotations(), 1, "Should have completed a full rotation")
+
+
+    def test_reverse_substitution_first_letter(self):
+        input_character = 'E'
+        expected_output_character = 'A'
+        actual = self.rotor.get_reverse_substitution_character_for_given_input(input_character)
+        self.assertEqual(actual, expected_output_character,
+                            "Expected the output to be 'A' when given 'E' but got " + actual)
+
+    def test_reverse_substitution_last_letter(self):
+        input_character = 'J'
+        expected_output_character = 'Z'
+        actual = self.rotor.get_reverse_substitution_character_for_given_input(input_character)
+        self.assertEqual(actual, expected_output_character,
+                            "Expected the output to be 'Z' when given 'J' but got " + actual)
+
+    def test_rotate_reverse_substitution(self):
+        input_character = 'K'
+        expected_output_character = 'A'
+        self.rotor.rotate()
+        actual = self.rotor.get_reverse_substitution_character_for_given_input(input_character)
+        self.assertEqual(actual, expected_output_character,
+                            "Expected the output to be 'A' when given 'K' but got " + actual)
 
 if __name__ == '__main__':
     unittest.main()
