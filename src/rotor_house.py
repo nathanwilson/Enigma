@@ -12,11 +12,11 @@ class RotorHouse:
     def __init__(self):
         self.__rotor = []
 
-    def add_rotor(self, rotor_substitution_order):
-        self.__rotor.append(Rotor(rotor_substitution_order))
+    def add_rotor(self, substitution_order, rotation_char):
+        self.__rotor.append(Rotor(substitution_order, rotation_char))
 
     def add_reflector(self, substitution_order):
-        self.__reflector = Rotor(substitution_order)
+        self.__reflector = Rotor(substitution_order, None)
 
     def check_house_has_rotors(self):
         if not self.__rotor:
@@ -45,9 +45,8 @@ class RotorHouse:
         rotor.rotate()
 
     def perform_non_first_rotor_rotate(self, rotor, previous_rotor):
-        if previous_rotor.get_number_of_rotations() > rotor.get_current_rotation_value():
-            if previous_rotor.get_current_rotation_value() is 0:
-                rotor.rotate()
+        if previous_rotor.get_turnover_status() is True:
+            rotor.rotate()
 
     def perform_rotate(self):
         previous_rotor = None

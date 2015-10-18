@@ -5,7 +5,7 @@ from src.exceptions.exceptions import InvalidRotorInputException
 
 class TestRotor(unittest.TestCase):
     def setUp(self):
-        self.rotor = Rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ')
+        self.rotor = Rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ', 'Q')
 
     def test_single_input_is_mapped_to_correct_output(self):
        input_character = 'A'
@@ -55,6 +55,14 @@ class TestRotor(unittest.TestCase):
         actual = self.rotor.get_reverse_substitution_character_for_given_input(input_character)
         self.assertEqual(actual, expected_output_character,
                             "Expected the output to be 'A' when given 'K' but got " + actual)
+
+    def test_advance_next_rotor(self):
+        for i in range(0, 7):
+            self.assertEqual(self.rotor.get_turnover_status(), False)
+            self.rotor.rotate()
+        self.assertEqual(self.rotor.get_turnover_status(), True)
+
+
 
 if __name__ == '__main__':
     unittest.main()
