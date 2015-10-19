@@ -1,3 +1,4 @@
+from src.exceptions.exceptions import InvalidRotorInputException
 
 class Plugboard:
     __substitution_cipher = []
@@ -14,3 +15,9 @@ class Plugboard:
                 or index_of_character > self.__MAX_INDEX_OF_CIPHER):
             raise(InvalidRotorInputException)
         return self.__substitution_cipher[index_of_character]
+
+    def process_string(self, input_string):
+        output_string = ''
+        for char in input_string:
+            output_string = output_string + self.get_substitution_character_for_given_input(char)
+        return output_string
