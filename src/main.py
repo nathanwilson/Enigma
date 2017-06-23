@@ -10,6 +10,10 @@ if not input_string.isupper():
     print 'Input must be all upper case'
     exit(1)
 
+if not input_string.isalpha():
+    print 'Input must only contain letters'
+    exit(1)
+
 plugboard = Plugboard('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
 
 rotor_house = RotorHouse()
