@@ -7,7 +7,7 @@ import sys
 
 input_string = str(sys.argv[1])
 if not input_string.isupper():
-    print "Input must be all upper case"
+    print 'Input must be all upper case'
     exit(1)
 
 plugboard = Plugboard('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
