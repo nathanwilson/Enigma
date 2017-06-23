@@ -12,6 +12,6 @@ Implementation of an Enigma Machine
 
 ### TODO ###
 
->Rotors with 2 notches
->Moke code less bad
->Add some sort of config to select rotors and reflectors when executing
+  - Rotors with 2 notches
+  - Make code less bad
+  - Add some sort of config to select rotors and reflectors when executing
