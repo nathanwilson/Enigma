@@ -8,7 +8,7 @@ Implementation of an Enigma Machine
 
 ## How to execute main of code ##
 
->python -m src.main <to_encrypt>
+>python -m src.main <to_encrypt (only capital letters)>
 
 ### TODO ###
 
