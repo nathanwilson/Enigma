@@ -30,4 +30,4 @@ rotor_house.add_reflector('EJMZALYXVBWFCRQUONTSPIKHGD')
 
 print input_string
 
-print rotor_house.process_string(plugboard.process_string(input_string))
+print plugboard.process_string(rotor_house.process_string(plugboard.process_string(input_string)))
