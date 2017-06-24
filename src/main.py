@@ -5,7 +5,12 @@ from plugboard import Plugboard
 
 import sys
 
+if len(sys.argv) < 2:
+    print 'Must provide text to encrypt'
+    exit(1)
+
 input_string = str(sys.argv[1])
+
 if not input_string.isupper():
     print 'Input must be all upper case'
     exit(1)
