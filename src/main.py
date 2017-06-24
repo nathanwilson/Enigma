@@ -24,6 +24,7 @@ plugboard = Plugboard('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
 rotor_house = RotorHouse()
 rotor_house.add_rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ', 'Q')
 rotor_house.add_rotor('AJDKSIRUXBLHWTMCQGZNPYFVOE', 'E')
+rotor_house.add_rotor('BDFHJLCPRTXVZNYEIWGAKMUSQO', 'M')
 rotor_house.add_reflector('EJMZALYXVBWFCRQUONTSPIKHGD')
 
 
